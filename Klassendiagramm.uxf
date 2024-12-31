@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <help_text/>
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>220</x>
+      <y>170</y>
+      <w>210</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>Game
+--
+- m.n.k : tuple(int)
+- board : Board
+- player1 : Player
+- player2 : Player
+--
++ start()
++ game_loop()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>530</x>
+      <y>170</y>
+      <w>210</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>Board
+--
+-id: Long {composite}
+_-ClassAttribute: Long_
+--
+#Operation(i: int): int
+/+AbstractOperation()/
+--
+Responsibilities
+-- Resp1
+-- Resp2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>850</x>
+      <y>170</y>
+      <w>210</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>Player
+--
+-id: Long {composite}
+_-ClassAttribute: Long_
+--
+#Operation(i: int): int
+/+AbstractOperation()/
+--
+Responsibilities
+-- Resp1
+-- Resp2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1150</x>
+      <y>170</y>
+      <w>210</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>MYBot
+--
+-id: Long {composite}
+_-ClassAttribute: Long_
+--
+#Operation(i: int): int
+/+AbstractOperation()/
+--
+Responsibilities
+-- Resp1
+-- Resp2</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
