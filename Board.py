@@ -5,7 +5,7 @@ import numpy as np
 
 
 
-class Baord:
+class Board:
     
     def __init__(self, m: int, n: int, k: int):
         self.m: int = m
@@ -45,10 +45,19 @@ class Baord:
 
         #Überprüfen der Diagonale
         for diag in range(self.n * - 1, self.n): #
-          for i in range(np.diag(self.array, k = diag)):#gibt eine Liste raus
-              if np.diag(self.board, k=diag) >= self.k:
-                  if all(np.diag(self.array, k= diag)[i + j] == player.player_number for j in range(self.k) if i + j + self.k <= len(np.diag(self.array, k= diag))):
-                      return player.player_number
+            for i in range(np.diag(self.array, k = diag)):#gibt eine Liste raus
+                if np.diag(self.array, k=diag) >= self.k:
+                    if all(np.diag(self.array, k= diag)[i + j] == player.player_number for j in range(self.k) if
+                           i + j + self.k <= len(np.diag(self.array, k= diag))):
+                        return player.player_number
+
+        # Überprüfen der Diagonale
+        for diag in range(self.n * - 1, self.n):  #
+            for i in range(np.diag(np.fliplr(self.array), k=diag)):  # gibt eine Liste raus
+                if np.diag(np.fliplr(self.array), k=diag) >= self.k:
+                    if all(np.diag(np.fliplr(self.array), k=diag)[i + j] == player.player_number for j in range(self.k) if
+                            i + j + self.k <= len(np.diag(np.fliplr(self.array), k=diag))):
+                        return player.player_number
 
         #Überprüft ein Unentschieden
         if not np.argwhere(self.board == 0):

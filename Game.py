@@ -1,15 +1,19 @@
 import numpy
-import Board
+from Board import Board
+from Player import Player
 
 class Game:
-    def __init__(self, mnk: tuple[int,int,int]):
-        self._mnk: tuple[int,int,int] = mnk
-        self._board: Board = Board(self._mnk)
-        #self._player1: Player
-        #self._player2: Player
+    def __init__(self, m: int, n: int, k: int):
+        self.m: int = m
+        self.n: int = n
+        self.k: int = k
+        self._board: Board = Board(self.m, self.n, self.k)
+        self._player1: Player
+        self._player2: Player
 
     def start(self) -> None:
         self._board.display()
+
         gewonnen: int  = self._board.has_won()
         pass
 
