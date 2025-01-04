@@ -1,5 +1,5 @@
 class Player:
-    def _init_(self, name, player_number):
+    def __init__(self, name: str, player_number):
         self.name = name
         self.player_number = player_number
 
