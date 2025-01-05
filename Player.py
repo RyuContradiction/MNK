@@ -1,5 +1,8 @@
+
+
 class Player:
-    def init(self, name: str, player_number: int):
+
+    def __init__(self, name: str, player_number: int):
         self._name:str = name
         self._player_number:int = player_number
 
@@ -19,12 +22,14 @@ class Player:
         self._player_number = value
 
 
-    def make_move(self, board: Board):
+    def make_move(self, board):
         while True:
             row = int(input(f"{self.name}, enter the row number: "))
             col = int(input(f"{self.name}, enter the column number: "))
-            if Board.array[row,col] == 1 or Board.array[row,col] == 2:
-                raise ValueError("Dieses Feld ist besetzt , bitte wählen sie ein nicht belegtes Feld")
-            if Board.array.shape[0] <= row or Board.array.shape[1] <= col:
-                raise ValueError("Dieses Feld gibt es nicht")
-            return (row, col)
+            if board.array[row,col] == 1 or board.array[row,col] == 2:
+                print("Dieses Feld ist besetzt , bitte wählen sie ein nicht belegtes Feld")
+            if board.array.shape[0] <= row or board.array.shape[1] <= col:
+                print("Dieses Feld gibt es nicht")
+            else:
+                break
+        return (row, col)

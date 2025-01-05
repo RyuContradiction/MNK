@@ -1,18 +1,67 @@
 import numpy
 from Board import Board
 from Player import Player
+import keyboard  # using module keyboard
+import time
+
 
 class Game:
-    def __init__(self, m: int, n: int, k: int):
+    def __init__(self, m: int = 5, n: int = 5, k: int= 4):
         self._m: int = m
         self._n: int = n
         self._k: int = k
         self._board: Board = Board(self._m, self._n, self._k)
         self._player1: Player = Player(name= "1",player_number = 1)
         self._player2: Player = Player(name= "1",player_number = 2)
+        self._indexierung: int = 0
 
     def start(self) -> None:
+        print(
+            'Dieses Spiel heisst MNK.\n Ein Spiel bei dem in einem Feld, welches M Anzahl Zeilen und N Anzahl Spalten besteht,\n'
+            'K Anzahl an Markierungen gesetz werden soll, welche nebeneinander stehen muessen, um zu gewinnen. ')
+        time.sleep(6)
+        print('press enter to continue')
+        keyboard.wait('enter')
+        print(f'Die Default werte sind: M = {self._m}, N = {self._n}, K = {self._k}.\n '
+              f'Möchten Sie diese ändern?')
+        time.sleep(3)
+        print('press y/n to decide')
+        while True:
+            try:
+                if keyboard.is_pressed('y'):
+                    while True:
+                        try:
+                            self._m = int(input('Welcher int Wert soll M haben?: '))
+                            self._n = int(input('Welcher int Wert soll N haben?: '))
+                            self._k = int(input('Welcher int Wert soll K haben?: '))
+                            break
+                        except ValueError:
+                            print('Die Eingabe muss eine ganze Zahl sein! Versuchen Sie es erneut.')
+                    break
+                if keyboard.is_pressed('n'):
+                    break
+            except:
+                break
         self._board.display()
+        print('Die zwei Spieler setzen abwechselnd Markierungen.')
+        time.sleep(4)
+        print('Um eine Markierungen zu setzen, werden die jeweilige indexe im Feld benötigt.')
+        time.sleep(4)
+        print('Um nun nicht in Verwirrung zu gelangen, ob z.b der erste eintrag den index 0:0 oder 1:1,')
+        print('wird gebeten sich fuer eins zu entscheiden.')
+        time.sleep(4)
+        print('Normale Array indexierung beibehalten? 0/1')
+        while True:
+            try:
+                if keyboard.is_pressed('0'):
+                    print('j')
+                    break
+                if keyboard.is_pressed('1'):
+                    self._indexierung = 1
+                    print('p')
+                    break
+            except:
+                break
         self._player1.name = input('Name des Player 1 eingeben:')
         self._player2.name = input('Name des Player 2 eingeben:')
         self._player1.player_number = 1
@@ -28,8 +77,7 @@ class Game:
         gewonnen: int
         while True:
             move_player1 = self._player1.make_move(self._board)
-            print(self._player1.player_number)
-            self._board.array[move_player1[0]:move_player1[1]] = self._player1.player_number
+            self._board.array[move_player1[0] + self._indexierung, move_player1[1] + self._indexierung] = self._player1.player_number
             gewonnen = self._board.has_won(self._player1)
             print(self._board.array)
             if gewonnen == self._player1.player_number:
@@ -39,7 +87,7 @@ class Game:
                 print('Ein Unentschieden, da alle Felder belegt sind')
                 break
             move_player2 = self._player2.make_move(self._board)
-            self._board.array[move_player2[0]:move_player2[1]] = self._player2.player_number
+            self._board.array[move_player2[0] + self._indexierung, move_player2[1] + self._indexierung] = self._player2.player_number
             gewonnen = self._board.has_won(self._player2)
             print(self._board.array)
             if gewonnen == self._player2.player_number:
@@ -49,9 +97,35 @@ class Game:
                 print('Ein Unentschieden, da alle Felder belegt sind')
                 break
 
+    def quick_explanation(self):
+        print('Dieses Spiel heisst MNK.\n Ein Spiel bei dem in einem Feld, welches M Anzahl Zeilen und N Anzahl Spalten besteht,\n'
+              'K Anzahl an Markierungen gesetz werden soll, welche nebeneinander stehen muessen, um zu gewinnen. ')
+        print('press enter to continue')
+        keyboard.wait('enter')
+        print(f'Die Default werte sind: M = {self._m}, N = {self._n}, K = {self._k}.\n '
+              f'Möchten Sie diese ändern?')
+        print('press y/n to decide')
+        while True:
+            try:
+                if keyboard.is_pressed('y'):
+                    while True:
+                        try:
+                            self._m = int(input('Welcher int Wert soll M haben?: '))
+                            self._n = int(input('Welcher int Wert soll N haben?: '))
+                            self._k = int(input('Welcher int Wert soll K haben?: '))
+                            break
+                        except ValueError:
+                            print('Die Eingabe muss eine ganze Zahl sein! Versuchen Sie es erneut.')
+                if keyboard.is_pressed('n'):
+                    break
+            except:
+                break
+
+
+
 
 
 if __name__ == '__main__':
-    game: Game = Game(4, 5, 4)
+    game: Game = Game()
     game.start()
     game.game_loop()

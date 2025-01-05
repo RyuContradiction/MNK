@@ -10,7 +10,7 @@ class Board:
         self._m: int = m
         self._n: int = n
         self._k: int = k
-        self._array: np.array = np.zeros((m, n))
+        self._array: np.array = np.zeros((self._m, self._n))
         self.board = [[" " for _ in range(self._m)] for _ in range(self._n)]
         
       
@@ -76,20 +76,23 @@ class Board:
         for diag in range(self._m * - 1, self._n): #
             for i in range(len(np.diag(self._array, k = diag))):#gibt eine Liste raus
                 if len(np.diag(self._array, k=diag)) >= self._k:
-                    if all(np.diag(self._array, k= diag)[i + j] == player.player_number for j in range(self._k) if
-                           i + self._k <= len(np.diag(self._array, k= diag))):
-                        return player.player_number
+                    if i + self._k <= len(np.diag(self._array, k=diag)):
+                        if all(np.diag(self._array, k= diag)[i + j] == player.player_number for j in range(self._k)):
+                            return player.player_number
 
         # Überprüfen der Diagonale
         for diag in range(self._m * - 1, self._n):  #
             for i in range(len(np.diag(np.fliplr(self._array), k=diag))):  # gibt eine Liste raus
                 if len(np.diag(np.fliplr(self._array), k=diag)) >= self._k:
-                    if all(np.diag(np.fliplr(self._array), k=diag)[i + j] == player.player_number for j in range(self._k) if
-                           i + self._k <= len(np.diag(np.fliplr(self._array), k=diag))):
-                        return player.player_number
+                    if i + self._k <= len(np.diag(np.fliplr(self._array), k=diag)):
+                        if all(np.diag(np.fliplr(self._array), k=diag)[i + j] == player.player_number for j in range(self._k)):
+                            return player.player_number
 
         #Überprüft ein Unentschieden
-        if not np.argwhere(self.board == 0):
+        """if not np.argwhere(self._array == 0):
+            return 0"""
+
+        if self._array.all() != 0:
             return 0
 
         """for row in range(self._m):
