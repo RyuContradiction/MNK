@@ -33,13 +33,13 @@ class Game:
         self._board.display()
         print('Die zwei Spieler setzen abwechselnd Markierungen.')
         time.sleep(4)
-        print('Um eine Markierungen zu setzen, werden die jeweilige indexe im Feld benötigt.')
+        print('Um eine Markierungen zu setzen, werden die jeweiligen indexe im Feld benötigt.')
         time.sleep(4)
         print('Um nun nicht in Verwirrung zu gelangen, ob z.b der erste eintrag den index 0:0 oder 1:1,')
         print('wird gebeten sich fuer eins zu entscheiden.')
         time.sleep(4)
         decision: str = input('Normale Array indexierung beibehalten? y/n')
-        if decision == 'y':
+        if decision == 'n':
             self._indexierung = 1
         self._player1.name = input('Name des Player 1 eingeben:')
         self._player2.name = input('Name des Player 2 eingeben:')
@@ -76,7 +76,7 @@ class Game:
                 print('Ein Unentschieden, da alle Felder belegt sind')
                 break
 
-   
+
 
 
 

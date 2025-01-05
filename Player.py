@@ -26,10 +26,13 @@ class Player:
         while True:
             row = int(input(f"{self.name}, enter the row number: "))
             col = int(input(f"{self.name}, enter the column number: "))
+            try:
+                board.array[row,col]
+            except IndexError:
+                print("Dieses Feld gibt es nicht")
+                continue
             if board.array[row,col] == 1 or board.array[row,col] == 2:
                 print("Dieses Feld ist besetzt , bitte wählen sie ein nicht belegtes Feld")
-            if board.array.shape[0] <= row or board.array.shape[1] <= col:
-                print("Dieses Feld gibt es nicht")
             else:
                 break
         return (row, col)
