@@ -16,32 +16,20 @@ class Game:
         self._indexierung: int = 0
 
     def start(self) -> None:
-        print(
-            'Dieses Spiel heisst MNK.\n Ein Spiel bei dem in einem Feld, welches M Anzahl Zeilen und N Anzahl Spalten besteht,\n'
-            'K Anzahl an Markierungen gesetz werden soll, welche nebeneinander stehen muessen, um zu gewinnen. ')
-        time.sleep(6)
-        print('press enter to continue')
-        keyboard.wait('enter')
-        print(f'Die Default werte sind: M = {self._m}, N = {self._n}, K = {self._k}.\n '
-              f'Möchten Sie diese ändern?')
-        time.sleep(3)
-        print('press y/n to decide')
-        while True:
-            try:
-                if keyboard.is_pressed('y'):
-                    while True:
-                        try:
-                            self._m = int(input('Welcher int Wert soll M haben?: '))
-                            self._n = int(input('Welcher int Wert soll N haben?: '))
-                            self._k = int(input('Welcher int Wert soll K haben?: '))
-                            break
-                        except ValueError:
-                            print('Die Eingabe muss eine ganze Zahl sein! Versuchen Sie es erneut.')
+        print('Dieses Spiel heisst MNK.\nEin Spiel bei dem in einem Feld, welches M Anzahl Zeilen und N Anzahl Spalten besteht,\nK Anzahl an Markierungen gesetz werden soll, welche nebeneinander stehen muessen, um zu gewinnen. ')
+        time.sleep(10)
+        print(f'Die Default werte sind: M = {self._m}, N = {self._n}, K = {self._k}.\nMöchten Sie diese ändern?')
+        time.sleep(4)
+        decision: str = input('enter y/n to decide:')
+        if decision == 'y':
+            while True:
+                try:
+                    self._m = int(input('Welcher int Wert soll M haben?: '))
+                    self._n = int(input('Welcher int Wert soll N haben?: '))
+                    self._k = int(input('Welcher int Wert soll K haben?: '))
                     break
-                if keyboard.is_pressed('n'):
-                    break
-            except:
-                break
+                except ValueError:
+                    print('Die Eingabe muss eine ganze Zahl sein! Versuchen Sie es erneut.')
         self._board.display()
         print('Die zwei Spieler setzen abwechselnd Markierungen.')
         time.sleep(4)
@@ -50,18 +38,9 @@ class Game:
         print('Um nun nicht in Verwirrung zu gelangen, ob z.b der erste eintrag den index 0:0 oder 1:1,')
         print('wird gebeten sich fuer eins zu entscheiden.')
         time.sleep(4)
-        print('Normale Array indexierung beibehalten? 0/1')
-        while True:
-            try:
-                if keyboard.is_pressed('0'):
-                    print('j')
-                    break
-                if keyboard.is_pressed('1'):
-                    self._indexierung = 1
-                    print('p')
-                    break
-            except:
-                break
+        decision: str = input('Normale Array indexierung beibehalten? y/n')
+        if decision == 'y':
+            self._indexierung = 1
         self._player1.name = input('Name des Player 1 eingeben:')
         self._player2.name = input('Name des Player 2 eingeben:')
         self._player1.player_number = 1
@@ -97,29 +76,7 @@ class Game:
                 print('Ein Unentschieden, da alle Felder belegt sind')
                 break
 
-    def quick_explanation(self):
-        print('Dieses Spiel heisst MNK.\n Ein Spiel bei dem in einem Feld, welches M Anzahl Zeilen und N Anzahl Spalten besteht,\n'
-              'K Anzahl an Markierungen gesetz werden soll, welche nebeneinander stehen muessen, um zu gewinnen. ')
-        print('press enter to continue')
-        keyboard.wait('enter')
-        print(f'Die Default werte sind: M = {self._m}, N = {self._n}, K = {self._k}.\n '
-              f'Möchten Sie diese ändern?')
-        print('press y/n to decide')
-        while True:
-            try:
-                if keyboard.is_pressed('y'):
-                    while True:
-                        try:
-                            self._m = int(input('Welcher int Wert soll M haben?: '))
-                            self._n = int(input('Welcher int Wert soll N haben?: '))
-                            self._k = int(input('Welcher int Wert soll K haben?: '))
-                            break
-                        except ValueError:
-                            print('Die Eingabe muss eine ganze Zahl sein! Versuchen Sie es erneut.')
-                if keyboard.is_pressed('n'):
-                    break
-            except:
-                break
+   
 
 
 
