@@ -17,6 +17,7 @@ class Player:
     @property
     def player_number(self):
         return self._player_number
+
     @player_number.setter
     def player_number(self, value):
         self._player_number = value
